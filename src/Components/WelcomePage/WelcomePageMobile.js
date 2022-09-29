@@ -20,17 +20,17 @@ export default function WelcomePageMobile(){
     <WelcomePage>
       <Main>
         <img src={Logo} alt="logo.png" />
-        <h1>Banco Origin</h1>
+        <h1>Origin Bank</h1>
       </Main>
       <Button onClick={HandleClick}>
-        <h1> Abra sua conta </h1>
+        <h1> Enroll Now! </h1>
         <Icon />
       </Button>
       <SignInButton>
-        <h1 onClick={HandleLogin}> Fazer login. </h1>
+        <h1 onClick={HandleLogin}> Log in. </h1>
       </SignInButton>
       <Description>
-        <p>Um banco minimalista, e simples.</p>
+        <p>A minimalistic yet simple bank.</p>
       </Description>
     </WelcomePage>
     </>
@@ -79,7 +79,8 @@ const SignInButton = styled.div`
     color: #2862ae;
     font-family: 'PT Sans', sans-serif;
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
+    font-weight: 700;
   }
 
 `
