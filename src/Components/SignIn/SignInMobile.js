@@ -24,17 +24,17 @@ export default function SignInMobile(){
       </Header>
       <Main>
         <img src={Logo} alt="logo.png" />
-        <h1>Banco Origin</h1>
+        <h1>Origin Bank</h1>
       </Main>
       <Secondary>
         <FormData>
           <input type={"number"} placeholder={"CPF"}></input>
-          <input type={"text"} placeholder={"SENHA"}></input>
-          <button>Entrar</button>
+          <input type={"text"} placeholder={"Password"}></input>
+          <button>Log in</button>
         </FormData>
         <BackToSignUp onClick={HandleClick}>
-          <p>Ainda não tem uma conta?</p>
-          <p>Crie sua conta aqui.</p>
+          <p>Want to create an account?</p>
+          <p>Click here.</p>
         </BackToSignUp>
       </Secondary>
     </LoginPage>
