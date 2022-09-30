@@ -2,7 +2,9 @@ import {React, useState} from "react"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import styled from "styled-components"
-import Logo from "../../images/pngwing.com.png"
+import Logo from "../../images/logo-no-background.png"
+import { white, black, purpleC } from "../../Utils/colors";
+import { Gudea, PT_SANS, Plex } from "../../Utils/fonts";
 
 export default function SignUpDesktop(){
 
@@ -66,11 +68,10 @@ function handleClick(){
     <LoginPage>
       <Main>
         <img src={Logo} alt="logo.png" />
-        <h1>Origin Bank</h1>
       </Main>
       <Secondary>
         <FormData>
-          <p>Insira seus dados</p>
+          <p>Insert your info</p>
           <input type={"text"} placeholder={"First Name"} value={form.firstName} onChange={e => setForm({...form, firstName: e.target.value})} required></input>
           <input type={"text"} placeholder={"Last Name"} value={form.secondName} onChange={e => setForm({...form, secondName: e.target.value})} required></input>
           <input type={"email"} placeholder={"email"} value={form.email} onChange={e => setForm({...form, email: e.target.value})} required></input>
@@ -92,7 +93,7 @@ function handleClick(){
 const LoginPage = styled.div`
   width: 100%;
   height: 100vh;
-  background-color: #2862ae;
+  background-color: ${black};
   display: flex;
 `
 
@@ -112,9 +113,7 @@ const Main = styled.div`
   }
 
   img{
-    width: 80px;
-    background-color: #E9EAEB;
-    border: 2px solid #E9EAEB;
+    width: 260px;
   }
 `
 
@@ -134,15 +133,15 @@ const FormData = styled.div`
   justify-content: center;
   height: 80%;
   width: 50%;
-  background-color: #E9EAEB;
+  background-color: ${white};
   box-shadow: 1px 1px 10px 1px rgba(140,140,140,0.84);
   margin-top: 16px;
   padding-top: 12px;
   
 
   p{
-    font-family: 'PT Sans', sans-serif;
-    color:#2862ae;
+    font-family: ${Gudea};  
+    color:${purpleC};
     font-weight: 700;
     font-size: 1.2rem;
   }
@@ -151,16 +150,16 @@ const FormData = styled.div`
     margin-top: 32px;
     border: none;
     background-color: transparent;
-    border-bottom: 2px solid #2862ae;
+    border-bottom: 2px solid ${purpleC};
     width: 70%;
     height: 26px;
     font-weight: 700;
     padding-left: 0.4rem;
-    color:#2862ae;
+    color:${purpleC};
     font-size: 1rem;
     ::placeholder,
     ::-webkit-input-placeholder {
-    color:#2862ae;
+    color:${purpleC};
     }
     outline: none;
   }
@@ -168,7 +167,7 @@ const FormData = styled.div`
   button{
     width: 70%;
     height: 2rem;
-    background-color: #2862ae;
+    background-color: ${purpleC};
     color: #E9EAEB;
     font-size: 1rem;
     font-weight: 700;
@@ -179,7 +178,7 @@ const FormData = styled.div`
 
 const BackToSignUp = styled.div`
   font-family: 'PT Sans', sans-serif;
-  color: #2862ae;
+  color: ${purpleC};
   width: 50%;
   height: 20%;
   display: flex;
@@ -189,7 +188,7 @@ const BackToSignUp = styled.div`
   background-color: #E9EAEB;
 
   p{
-    font-size: 1rem;
+    font-size: 1.2rem;
     cursor: pointer;
   }
 

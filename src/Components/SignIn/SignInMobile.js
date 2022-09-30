@@ -2,8 +2,10 @@ import {React, useState} from "react"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import styled from "styled-components"
-import Logo from "../../images/pngwing.com.png"
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
+import Logo from "../../images/logo-no-background.png"
+import { white, black, purpleC } from "../../Utils/colors";
+import { Gudea, PT_SANS, Plex } from "../../Utils/fonts";
 
 export default function SignInMobile(){
 
@@ -24,7 +26,6 @@ export default function SignInMobile(){
       </Header>
       <Main>
         <img src={Logo} alt="logo.png" />
-        <h1>Origin Bank</h1>
       </Main>
       <Secondary>
         <FormData>
@@ -44,7 +45,7 @@ export default function SignInMobile(){
 const LoginPage = styled.div`
   width: 100%;
   height: 100vh;
-  background-color: #E9EAEB;
+  background-color: ${black};
 `
 const Header = styled.div`
   height: 10%;
@@ -54,9 +55,9 @@ const Header = styled.div`
 
 const Icon = styled(BsFillArrowLeftCircleFill)`
   height: 100%;
-  font-size: 2.8rem;
+  font-size: 3.4rem;
   padding-left: 1rem;
-  color: #2862ae;
+  color: ${purpleC};
 `
 
 const Main = styled.div`
@@ -74,7 +75,9 @@ const Main = styled.div`
   }
 
   img{
-    width: 80px;
+    width: 200px;
+    margin-left: 2rem;
+    margin-top: 1rem;
   }
 `
 
@@ -88,14 +91,15 @@ const FormData = styled.div`
   flex-direction: column;
   align-items: center;
   height: 50%;
-  background-color: #2862ae;
-  box-shadow: 1px 1px 10px 1px rgba(140,140,140,0.84);
+  background-color: ${black};
+  border-top: 2px solid ${purpleC};
+  border-bottom: 2px solid ${purpleC};
 
   input{
     margin-top: 28px;
     border: none;
     background-color: transparent;
-    border-bottom: 2px solid #E9EAEB;
+    border-bottom: 2px solid ${purpleC};
     width: 70%;
     height: 26px;
     font-weight: 700;
@@ -113,8 +117,8 @@ const FormData = styled.div`
     width: 40%;
     height: 2.6rem;
     border-radius: 25px;
-    background-color: #E9EAEB;
-    color: #2862ae;
+    background-color: ${purpleC};
+    color: ${white};
     font-size: 1.2rem;
     font-weight: 700;
     border: none;
@@ -124,7 +128,7 @@ const FormData = styled.div`
 
 const BackToSignUp = styled.div`
   font-family: 'PT Sans', sans-serif;
-  color:#2862ae;
+  color:${white};
   width: 100%;
   height: 35%;
   display: flex;
@@ -134,7 +138,7 @@ const BackToSignUp = styled.div`
   margin-top: 3rem;
 
   p{
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     cursor: pointer;
   }
 

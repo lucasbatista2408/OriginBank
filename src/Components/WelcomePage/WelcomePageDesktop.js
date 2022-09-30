@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components"
-import Logo from "../../images/pngwing.com.png"
+import Logo from "../../images/logo-no-background.png"
 import { useNavigate } from "react-router-dom"
 import {FaArrowRight} from "react-icons/fa"
-
+import { white, black, purpleC } from "../../Utils/colors";
+import { Gudea, PT_SANS, Plex } from "../../Utils/fonts";
 
 export default function WelcomePageDesktop(){
 
@@ -22,7 +23,7 @@ export default function WelcomePageDesktop(){
     <WelcomePage>
       <Main>
         <img src={Logo} alt="logo.png" />
-        <h1>Origin Bank</h1>
+        {/* <h1>Origin Bank</h1> */}
       </Main>
       <SecondarySection>
         <Button >
@@ -44,7 +45,7 @@ export default function WelcomePageDesktop(){
 const WelcomePage = styled.h1`
   width: 100%;
   height: 100vh;
-  background-color: #E9EAEB;
+  background-color: ${black};
   font-size: 2rem;
   display: flex;
 `
@@ -58,18 +59,18 @@ const Main = styled.div`
   h1{
     margin-left: 2rem;
     color: #2862ae;
-    font-family: 'PT Sans', sans-serif;
+    font-family: ${Gudea};
     font-weight: 700;
   }
 
   img{
-    width: 80px;
+    width: 260px;
   }
 `
 
 const SecondarySection = styled.div`
   width: 50%;
-  background-color: #2862ae;
+  background-color: ${purpleC};
   display: flex;
   flex-direction: column;
 `
@@ -84,7 +85,7 @@ const Button = styled.div`
   h1{
     cursor: pointer;
     color: #E9EAEB;
-    font-family: 'PT Sans', sans-serif;
+    font-family: ${Gudea};
     text-align: center;
     font-size: 1.8rem;
     margin-left: 1.8rem;
@@ -105,7 +106,8 @@ const Description = styled.div`
     font-size: 1.8rem;
     font-weight: 400;
     text-align: center;
-    font-family: 'PT Sans', sans-serif;
+    font-family: ${Plex};
+    font-weight: 500;
     align-self: flex-end;
   }
 `

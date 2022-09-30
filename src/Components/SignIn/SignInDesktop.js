@@ -2,9 +2,11 @@ import {React, useState, useContext} from "react"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import styled from "styled-components"
-import Logo from "../../images/pngwing.com.png"
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import UserContext from "../../context"
+import Logo from "../../images/logo-no-background.png"
+import { white, black, purpleC } from "../../Utils/colors";
+import { Gudea, PT_SANS, Plex } from "../../Utils/fonts";
 
 export default function SignInDesktop(){
 
@@ -86,7 +88,6 @@ export default function SignInDesktop(){
     <LoginPage>
       <Main>
         <img src={Logo} alt="logo.png" />
-        <h1>Origin Bank</h1>
       </Main>
       <Secondary>
         <FormData>
@@ -116,7 +117,7 @@ export default function SignInDesktop(){
 const LoginPage = styled.div`
   width: 100%;
   height: 100vh;
-  background-color: #2862ae;
+  background-color: ${black};
   display: flex;
 `
 
@@ -127,18 +128,8 @@ const Main = styled.div`
   height: 100vh;
   width: 50%;
 
-  h1{
-    margin-left: 1rem;
-    color: #E9EAEB;
-    font-family: 'PT Sans', sans-serif;
-    font-weight: 700;
-    font-size: 1.8rem;
-  }
-
   img{
-    width: 80px;
-    background-color: #E9EAEB;
-    border: 2px solid #E9EAEB;
+    width: 260px;
   }
 `
 
@@ -157,33 +148,33 @@ const FormData = styled.div`
   align-items: center;
   height: 50%;
   width: 50%;
-  background-color: #E9EAEB;
-  /* border-radius: 0.6rem; */
-  box-shadow: 1px 1px 10px 1px rgba(140,140,140,0.84);
+  background-color: ${purpleC};
   margin-top: 130px;
   padding-top: 4rem;
 
   p{
-    font-family: 'PT Sans', sans-serif;
-    color:#2862ae;
+    font-family: ${Gudea};
+    color:${white};
     font-weight: 700;
     font-size: 1.2rem;
   }
 
   input{
     margin-top: 32px;
+    font-family: ${Gudea};
     border: none;
     background-color: transparent;
-    border-bottom: 2px solid #2862ae;
+    border-bottom: 2px solid ${white};
     width: 70%;
     height: 26px;
     font-weight: 700;
     padding-left: 0.4rem;
-    color:#2862ae; 
+    color:${white}; 
     font-size: 1rem;
     ::placeholder,
     ::-webkit-input-placeholder {
-    color:#2862ae;
+    color:${white};
+    font-family: ${Gudea};
     }
     outline: none;
     ::-webkit-inner-spin-button {
@@ -195,8 +186,8 @@ const FormData = styled.div`
   button{
     width: 40%;
     height: 2.2rem;
-    background-color: #2862ae;
-    color: #E9EAEB;
+    background-color: ${white};
+    color: ${purpleC};
     font-size: 1rem;
     font-weight: 700;
     border: none;
@@ -206,15 +197,15 @@ const FormData = styled.div`
 `
 
 const BackToSignUp = styled.div`
-  font-family: 'PT Sans', sans-serif;
-  color: #2862ae;
+  font-family: ${Gudea};
+  color: ${white};
   width: 50%;
   height: 20%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #E9EAEB;
+  background-color: ${purpleC};
 
   p{
     font-size: 1.2rem;
