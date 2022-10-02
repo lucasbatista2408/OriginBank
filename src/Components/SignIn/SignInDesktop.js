@@ -10,7 +10,7 @@ import { Gudea, PT_SANS, Plex } from "../../Utils/fonts";
 
 export default function SignInDesktop(){
 
-  const URI = process.env.REACT_APP_DATABASE_URI
+  const URI = process.env.REACT_APP_DATABASE_URI;
   const { setInfo } = useContext(UserContext);
   const {local, setLocal} = useContext(UserContext);
 
@@ -18,6 +18,8 @@ export default function SignInDesktop(){
     cpf: '',
     password: '',
   })
+
+  console.log(login)
 
   const navigate = useNavigate();
 
@@ -41,6 +43,7 @@ export default function SignInDesktop(){
     } 
 
     const URL = `${URI}/signin`
+    console.log(URL)
     const signIn = login;
     const promise = axios.post(URL, signIn)
     promise

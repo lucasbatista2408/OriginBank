@@ -11,10 +11,10 @@ export default function SignUpDesktop(){
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
-    firstName: '',
-    secondName: '',
+    first_name: '',
+    last_name: '',
     email: '',
-    securityNumber: '',
+    cpf: '',
     dob: '',
     password: '',
     confirm: ''
@@ -22,9 +22,10 @@ export default function SignUpDesktop(){
 
 function SignUp(e){
   e.preventDefault();
-  e.currentTarget.disabled=true;
+  const button = document.getElementById("enroll")
+  button.disabled=true;
 
-  if(!form.firstName || !form.secondName || !form.email || !form.securityNumber || !form.dob || !form.password || !form.confirm){
+  if(!form.first_name || !form.last_name || !form.email || !form.cpf || !form.dob || !form.password || !form.confirm){
     e.currentTarget.disabled=false;
     return alert('Fill all the necessary fields')
   }
@@ -44,20 +45,20 @@ function SignUp(e){
     navigate('/')
   })
   .catch(error => (
-    alert(HandleError(error.response)),
-    e.currentTarget.disabled=false,
-    window.location.reload(true)
+    button.disabled=false,
+    alert(HandleError(error.response))
   ))
 }
 
 function HandleError(error){
 
-  if(error.status === 409){
-    return error.data
-  } else {
-    return 'something went wront'
+  const identifier = {
+    status: error.status,
+    data: error.statusText
   }
+  console.log(error)
 
+    return error.statusText
 }
 
 function handleClick(){
@@ -72,14 +73,14 @@ function handleClick(){
       <Secondary>
         <FormData>
           <p>Insert your info</p>
-          <input type={"text"} placeholder={"First Name"} value={form.firstName} onChange={e => setForm({...form, firstName: e.target.value})} required></input>
-          <input type={"text"} placeholder={"Last Name"} value={form.secondName} onChange={e => setForm({...form, secondName: e.target.value})} required></input>
+          <input type={"text"} placeholder={"First Name"} value={form.first_name} onChange={e => setForm({...form, first_name: e.target.value})} required></input>
+          <input type={"text"} placeholder={"Last Name"} value={form.last_name} onChange={e => setForm({...form, last_name: e.target.value})} required></input>
           <input type={"email"} placeholder={"email"} value={form.email} onChange={e => setForm({...form, email: e.target.value})} required></input>
-          <input type={"text"} placeholder={"Social Number"} value={form.securityNumber} onChange={e => setForm({...form, securityNumber: e.target.value})} required></input>
+          <input type={"text"} placeholder={"Social Number"} value={form.cpf} onChange={e => setForm({...form, cpf: e.target.value})} required></input>
           <input type={"text"} placeholder={"DD/MM/AAAA"} value={form.dob} onChange={e => setForm({...form, dob: e.target.value})} required></input>
           <input type={"password"} placeholder={"Password"} value={form.password} onChange={e => setForm({...form, password: e.target.value})} required></input>
           <input type={"password"} placeholder={"Confirm Password"} value={form.confirm} onChange={e => setForm({...form, confirm: e.target.value})} required></input>
-          <button onClick={SignUp}>Enroll</button>
+          <button id="enroll" onClick={SignUp}>Enroll</button>
         </FormData>
         <BackToSignUp onClick={handleClick}>
           <p>Already have an account?</p>
