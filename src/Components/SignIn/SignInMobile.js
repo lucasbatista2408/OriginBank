@@ -1,13 +1,25 @@
-import {React, useState} from "react"
+import {React, useState, useContext} from "react"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import styled from "styled-components"
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
+import UserContext from "../../context"
 import Logo from "../../images/logo-no-background.png"
 import { white, black, purpleC } from "../../Utils/colors";
 import { Gudea, PT_SANS, Plex } from "../../Utils/fonts";
 
 export default function SignInMobile(){
+
+  const URI = process.env.REACT_APP_DATABASE_URI;
+  const { setInfo } = useContext(UserContext);
+  const {local, setLocal} = useContext(UserContext);
+
+  const [login, setLogIn] = useState({
+    cpf: '',
+    password: '',
+  })
+
+  console.log(login)
 
   const navigate = useNavigate();
 
@@ -17,6 +29,61 @@ export default function SignInMobile(){
 
   function HandleWelcomePage(){
     navigate('/')
+  }
+
+  function SignIn(e){
+    e.preventDefault();
+    e.currentTarget.disabled=true;
+
+    console.log('clicked')
+
+    if(!login.cpf || !login.password){
+      return alert('Fill all the necessary fields'), 
+      e.currentTarget.disabled=false
+    } 
+
+    const URL = `${URI}/signin`
+    console.log(URL)
+    const signIn = login;
+    const promise = axios.post(URL, signIn)
+    promise
+    .then( res => {
+      const dados = res.data;
+      console.log(dados)
+      setInfo(dados)
+      localStorage.setItem("token", dados.token);
+      localStorage.setItem("id", dados.id);
+      localStorage.setItem("first_name", dados.name)
+      const token = localStorage.getItem('token')
+      setLocal(token)
+
+        if(local.length === 0){
+          alert('bad request')
+          window.location.reload(true)
+        } else{
+          navigate('/dashboard')
+        }
+    })
+    .catch(error => (
+      console.log(error.response.data[0]),
+      alert(HandleError(error.response)),
+      e.currentTarget.disabled=false
+    ))
+  }
+
+  function handleKeyDown(e){
+    var key = e.key;
+    if(key === 'Enter'){
+      SignIn(e)
+    }
+  }
+
+  function HandleError(error){
+    if(error.status === 401){
+      return 'email or password are incorrect'
+    } else{
+      return 'enter a valid email or password'
+    }
   }
 
   return(
@@ -29,8 +96,17 @@ export default function SignInMobile(){
       </Main>
       <Secondary>
         <FormData>
-          <input type={"number"} placeholder={"CPF"}></input>
-          <input type={"text"} placeholder={"Password"}></input>
+        <input type={"number"} 
+          placeholder={"CPF"} 
+          value={login.cpf} 
+          onChange={e => setLogIn({...login, cpf: e.target.value})} 
+          required/>
+          <input onKeyUp={(e) => handleKeyDown(e)}
+          type={"password"} 
+          placeholder="Password" 
+          value={login.password} 
+          onChange={e => setLogIn({...login, password: e.target.value})} 
+          required/>
           <button>Log in</button>
         </FormData>
         <BackToSignUp onClick={HandleClick}>

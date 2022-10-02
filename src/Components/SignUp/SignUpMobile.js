@@ -11,10 +11,10 @@ export default function SignUpMobile(){
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
-    firstName: '',
-    secondName: '',
+    first_name: '',
+    last_name: '',
     email: '',
-    securityNumber: '',
+    cpf: '',
     dob: '',
     password: '',
     confirm: ''
@@ -22,10 +22,17 @@ export default function SignUpMobile(){
 
 function SignUp(e){
   e.preventDefault();
-  e.currentTarget.disabled=true;
+  const button = document.getElementById("enroll")
+  button.disabled=true;
 
-  if(!form.username || !form.email || !form.password || !form.picture){
+  if(!form.first_name || !form.last_name || !form.email || !form.cpf || !form.dob || !form.password || !form.confirm){
+    e.currentTarget.disabled=false;
     return alert('Fill all the necessary fields')
+  }
+
+  if(form.password !== form.confirm){
+    e.currentTarget.disabled=false;
+    return alert('password does not match')
   }
 
   const URI = process.env.REACT_APP_DATABASE_URI
@@ -38,20 +45,14 @@ function SignUp(e){
     navigate('/')
   })
   .catch(error => (
-    alert(HandleError(error.response)),
-    e.currentTarget.disabled=false,
-    window.location.reload(true)
+    button.disabled=false,
+    alert(HandleError(error.response))
   ))
 }
 
 function HandleError(error){
-
-  if(error.status === 409){
-    return error.data
-  } else {
-    return 'something went wront'
-  }
-
+  
+    return error.statusText
 }
 
 function handleClick(){

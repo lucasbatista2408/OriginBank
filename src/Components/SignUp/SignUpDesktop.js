@@ -52,13 +52,9 @@ function SignUp(e){
 
 function HandleError(error){
 
-  const identifier = {
-    status: error.status,
-    data: error.statusText
-  }
-  console.log(error)
+  console.log(error.data[0])
 
-    return error.statusText
+    return error.data[0]
 }
 
 function handleClick(){

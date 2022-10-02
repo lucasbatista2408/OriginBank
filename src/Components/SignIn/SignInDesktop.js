@@ -53,7 +53,7 @@ export default function SignInDesktop(){
       setInfo(dados)
       localStorage.setItem("token", dados.token);
       localStorage.setItem("id", dados.id);
-      localStorage.setItem("firstName", dados.firstName)
+      localStorage.setItem("first_name", dados.name)
       const token = localStorage.getItem('token')
       setLocal(token)
 
@@ -67,8 +67,7 @@ export default function SignInDesktop(){
     .catch(error => (
       console.log(error.response.data),
       alert(HandleError(error.response)),
-      e.currentTarget.disabled=false,
-      window.location.reload(true)
+      e.currentTarget.disabled=false
     ))
   }
 
