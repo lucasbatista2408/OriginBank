@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react"
 import styled from "styled-components"
-import Logo from "../../images/logo-no-background.png"
 import { useNavigate } from "react-router-dom"
 import {HiMenu} from "react-icons/hi";
 import { white, black, purpleC } from "../../Utils/colors";
 import { Gudea, PT_SANS, Plex } from "../../Utils/fonts";
 import {AiFillEye} from "react-icons/ai";
 import {AiFillEyeInvisible} from "react-icons/ai";
+import TransactionGraph from "./TransactionGraph";
 import { getBalance } from "./Functions";
 
 export default function DashBoardMobile(){
@@ -48,8 +48,8 @@ export default function DashBoardMobile(){
           )}
         </Balance>
       </InfoBalance>
-      <Cards/>
-      <Transactions/>
+      <TransactionGraph/>
+      <LastTransaction/>
     </DashBoard>
   )
 }
@@ -123,10 +123,6 @@ const NotHide = styled(AiFillEyeInvisible)`
   margin-top: 0.2rem;
 `
 
-const Cards = styled.div`
-
-`
-
-const Transactions = styled.div`
+const LastTransaction = styled.div`
 
 `
