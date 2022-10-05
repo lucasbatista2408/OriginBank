@@ -87,7 +87,7 @@ const Info = styled.div`
 
   h1{
     color: ${white};
-    font-size: 1.4rem;
+    font-size: 1.8rem;
     font-family: ${Gudea};
     font-weight: 700;
   }
@@ -100,11 +100,11 @@ const Icon = styled(HiMenu)`
 `
 
 const Balance = styled.div`
-  height: 60%;
+  height: 50%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
 
   h1{
     font-size: 1.8rem;
