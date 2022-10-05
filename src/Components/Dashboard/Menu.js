@@ -1,5 +1,7 @@
 import React from "react";
+import { useNavigate } from "react-router-dom"
 import styled from "styled-components";
+import TransactionsComponent from "./DashboardComponents/Transactions";
 import { Gudea } from "../../Utils/fonts";
 import { BiTransferAlt } from "react-icons/bi";
 import { BiArrowFromBottom } from "react-icons/bi";
@@ -10,22 +12,40 @@ import { BiArrowToBottom } from "react-icons/bi";
 
 export default function Menu(){
 
+  const navigate = useNavigate();
+
+  function navigateTransactions(){
+    navigate('/transactions')
+  }
+
+  function navigateCards(){
+    navigate('/cards')
+  }
+
+  function navigateDeposit(){
+    navigate('/deposit')
+  }
+
+  function navigateTransfer(){
+    navigate('/transfer')
+  }
+
   return(
     <>
     <MenuContainer>
-      <Transactions>
+      <Transactions onClick={navigateTransactions}>
         <TransactionIcon/>
         <p>Transactions</p>
       </Transactions>
-      <Request>
+      <Request onClick={navigateCards}>
         <CardIcon/>
         <p>Cards</p>
       </Request>
-      <Deposit>
+      <Deposit onClick={navigateDeposit}>
         <DepositIcon/>
         <p>Deposit Money</p>
       </Deposit>
-      <Transfer>
+      <Transfer onClick={navigateTransfer}>
         <TransferIcon/>
         <p>Transfer Money</p>
       </Transfer>

@@ -11,6 +11,7 @@ import LastTransaction from "./LastTransaction";
 import { getBalance } from "./Functions";
 import Menu from "./Menu";
 
+
 export default function DashBoardMobile(){
 
   const [balance, setBalance] = useState("")

@@ -5,6 +5,7 @@ import SignUp from "./Components/SignUp/SignUp";
 import SignIn from "./Components/SignIn/SignIn";
 import UserContext from "./context";
 import DashBoard from "./Components/Dashboard/Dashboard";
+import TransactionsComponent from "./Components/Dashboard/DashboardComponents/Transactions";
 
 function App() {
 
@@ -20,6 +21,10 @@ function App() {
         <Route path="/" element={<Welcome />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />
+        <Route path="/dashboard" element={<DashBoard />} />
+        <Route path="/transactions" element={<TransactionsComponent />} />
+        <Route path="/dashboard" element={<DashBoard />} />
+        <Route path="/dashboard" element={<DashBoard />} />
         <Route path="/dashboard" element={<DashBoard />} />
       </Routes>
     </BrowserRouter>
