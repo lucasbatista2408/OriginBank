@@ -7,7 +7,9 @@ import { Gudea, PT_SANS, Plex } from "../../Utils/fonts";
 import {AiFillEye} from "react-icons/ai";
 import {AiFillEyeInvisible} from "react-icons/ai";
 import TransactionGraph from "./TransactionGraph";
+import LastTransaction from "./LastTransaction";
 import { getBalance } from "./Functions";
+import Menu from "./Menu";
 
 export default function DashBoardMobile(){
 
@@ -50,6 +52,7 @@ export default function DashBoardMobile(){
       </InfoBalance>
       <TransactionGraph/>
       <LastTransaction/>
+      <Menu/>
     </DashBoard>
   )
 }
@@ -57,7 +60,7 @@ export default function DashBoardMobile(){
 const DashBoard = styled.div`
   width: 100%;
   height: 100vh;
-  background-color: ${white};
+  background-color: ${black};
 `
 
 const InfoBalance = styled.div`
@@ -121,8 +124,4 @@ const NotHide = styled(AiFillEyeInvisible)`
   font-size: 1.8rem;
   color: ${white};
   margin-top: 0.2rem;
-`
-
-const LastTransaction = styled.div`
-
 `
