@@ -1,7 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom"
 import styled from "styled-components";
-import TransactionsComponent from "./DashboardComponents/Transactions";
 import { Gudea } from "../../Utils/fonts";
 import { BiTransferAlt } from "react-icons/bi";
 import { BiArrowFromBottom } from "react-icons/bi";
@@ -86,13 +85,13 @@ const TransferIcon = styled(BiArrowFromBottom)`
 `
 const CardIcon = styled(BiCreditCard)`
   margin-top: 1.8rem;
-  margin-right: 0.6rem;
+  margin-right: 0.7rem;
   font-size: 2rem;
   color: ${white};
 `
 const DepositIcon = styled(BiArrowToBottom)`
   margin-top: 1.8rem;
-  margin-right: 0.6rem;
+  margin-right: 0.7rem;
   font-size: 2rem;
   color: ${white};
 `
