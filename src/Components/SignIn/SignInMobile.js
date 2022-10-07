@@ -35,8 +35,6 @@ export default function SignInMobile(){
     e.preventDefault();
     e.currentTarget.disabled=true;
 
-    console.log('clicked')
-
     if(!login.cpf || !login.password){
       return alert('Fill all the necessary fields'), 
       e.currentTarget.disabled=false
@@ -107,7 +105,7 @@ export default function SignInMobile(){
           value={login.password} 
           onChange={e => setLogIn({...login, password: e.target.value})} 
           required/>
-          <button>Log in</button>
+          <button onClick={SignIn}>Log in</button>
         </FormData>
         <BackToSignUp onClick={HandleClick}>
           <p>Want to create an account?</p>

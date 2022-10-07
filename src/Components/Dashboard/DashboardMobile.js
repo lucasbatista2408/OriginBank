@@ -8,7 +8,7 @@ import {AiFillEye} from "react-icons/ai";
 import {AiFillEyeInvisible} from "react-icons/ai";
 import TransactionGraph from "./TransactionGraph";
 import LastTransaction from "./LastTransaction";
-import { getBalance } from "./Functions";
+import { GetBalance } from "./Functions";
 import Menu from "./Menu";
 
 
@@ -20,7 +20,7 @@ export default function DashBoardMobile(){
   const name = localStorage.getItem("first_name")
 
   useEffect(() => {
-    getBalance(setBalance)
+  GetBalance(setBalance)
   }, [])
 
   function handleVisible(){

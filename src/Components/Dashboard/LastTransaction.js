@@ -1,21 +1,36 @@
-import React from "react";
+import { React, useEffect, useState } from "react";
 import styled from "styled-components"
 import { purpleC, white } from "../../Utils/colors";
 import { Gudea } from "../../Utils/fonts";
+import { getLastTransaction } from "./Functions";
 
 export default function LastTransaction(){
+
+  const [data, setData] = useState([])
+
+  useEffect(() => {
+    getLastTransaction(setData)
+  }, [])
+  
+
 
   return(
     <LastTransactionPage>
       <h1>Last Transaction</h1>
       <Transaction>
         <Info>
-          <h1>OutBack Restaurante</h1>
-          <p>04/10</p>
+          <h1>{data.description}</h1>
+          <p>{data.date}</p>
         </Info>
+        { data.type === 'debit' ? 
         <Amount>
-          - R$ 150,00
+        R$ - {data.amount}
+        </Amount> 
+        :
+        <Amount>
+        R$ + {data.amount}
         </Amount>
+      }
       </Transaction>
     </LastTransactionPage>
   )

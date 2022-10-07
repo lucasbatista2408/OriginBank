@@ -1,4 +1,5 @@
-import React from "react";
+import {React, useEffect, useState} from "react";
+import axios from "axios"
 import styled from "styled-components";
 import { Line, Bar } from 'react-chartjs-2';
 import {
@@ -11,6 +12,8 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
+import { purpleC, white } from "../../Utils/colors";
+import { getAllTransaction } from "./Functions";
 
 ChartJS.register(
   CategoryScale,
@@ -24,6 +27,12 @@ ChartJS.register(
 
 
 export default function TransactionGraph(){
+
+  const [info, setInfo] = useState([])
+  useEffect(() => {
+    getAllTransaction(setInfo, 10);
+  }, [])
+  
 
   const options = {
     responsive: true,
@@ -41,13 +50,13 @@ export default function TransactionGraph(){
           display: false
         },
         ticks: {
-          color: 'purple'
+          color: `${purpleC}`
         }
       }
     },
     elements:{
       line:{
-        tension:0.3
+        tension:0.3,
       }
     },
     maintainAspectRatio: false,
@@ -58,16 +67,26 @@ export default function TransactionGraph(){
     }
   };
 
-  const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  const reverse = Array.from(info).reverse();
+
+  const debit = reverse.filter(value => value.type !== "deposit")
+  const deposit = reverse.filter(value => value.type !== "debit")
+  const labels = debit.map((value,key) => value.date);
 
   const data = {
     labels,
     datasets: [
       {
-        label: 'Dataset 1',
-        data: [10,20,30,20,10,5,10],
-        borderColor: 'purple',
-        backgroundColor: 'purple',
+        label: 'Debit',
+        data: debit.map((value,key) => value.amount),
+        borderColor: `${purpleC}`,
+        backgroundColor: `${purpleC}`,
+      },
+      {
+        label: 'Deposit',
+        data: deposit.map((value,key) => value.amount),
+        borderColor: `${white}`,
+        backgroundColor: `${white}`
       }
     ],
   };

@@ -4,18 +4,21 @@ import { black, purpleC, white } from "../../../Utils/colors";
 import Logo from "../../../images/logo-no-background.png"
 import {AiFillEye} from "react-icons/ai";
 import {AiFillEyeInvisible} from "react-icons/ai";
-import { getBalance } from "../Functions";
+import { GetBalance } from "../Functions";
 import { Gudea } from "../../../Utils/fonts";
+import { getAllTransaction } from "../Functions";
 
 
 export default function TransactionsComponent(){
 
   const [balance, setBalance] = useState("")
   const [hide, setHide] = useState(true)
+  const [info, setInfo] = useState([])
 
 
   useEffect(() => {
-    getBalance(setBalance)
+    GetBalance(setBalance)
+    getAllTransaction(setInfo, 6);
   }, [])
 
   function handleVisible(){
@@ -48,27 +51,23 @@ export default function TransactionsComponent(){
           <h1>Amount</h1>
         </Info>
         <TransactionsList>
-            <ul>
-              <Description>
-                <h1>Outback Restaurante</h1>
-                <p>04/10</p>
-              </Description>
-              <Amount>R$ -150,00</Amount>
-            </ul>
-            <ul>
-              <Description>
-                <h1>Outback Restaurante</h1>
-                <p>04/10</p>
-              </Description>
-              <Amount>R$ -150,00</Amount>
-            </ul>
-            <ul>
-              <Description>
-                <h1>Outback Restaurante</h1>
-                <p>04/10</p>
-              </Description>
-              <Amount>R$ -150,00</Amount>
-            </ul>
+          {Array.from(info).map(value => 
+              <ul>
+                <Description>
+                  <h1>{value.description}</h1>
+                  <p>{value.date}</p>
+                </Description>
+                { value.type === 'debit' ? 
+                    <Amount>
+                    R$ - {value.amount}
+                    </Amount> 
+                    :
+                    <Amount>
+                    R$ + {value.amount}
+                    </Amount>
+                }
+              </ul>
+          )}
         </TransactionsList>
       </Receipt>
     </TransactionContainer>
@@ -156,7 +155,8 @@ const Info = styled.div`
 
 const TransactionsList = styled.div`
   width: 100%;
-  height: 80%;
+  height: 84%;
+  overflow-y: scroll;
 
   ul{
     display: flex;
