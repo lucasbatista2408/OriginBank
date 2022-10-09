@@ -40,6 +40,34 @@ export function getLastTransaction(setData){
   ))
 }
 
+export function getLastDeposit(setData){
+
+  const URL = `${URI}/last-dp`
+  console.log(URL)
+  const promise = axios.get(URL, config)
+  promise
+  .then( res => {
+    setData(res.data)
+  })
+  .catch(error => (
+    console.log('error')
+  ))
+}
+
+export function getLastTransfer(setData){
+
+  const URL = `${URI}/last-transfer`
+  console.log(URL)
+  const promise = axios.get(URL, config)
+  promise
+  .then( res => {
+    setData(res.data)
+  })
+  .catch(error => (
+    console.log('error')
+  ))
+}
+
 export function getAllTransaction(setInfo, limiter){
 
   const URL = `${URI}/all-tr`
@@ -47,6 +75,20 @@ export function getAllTransaction(setInfo, limiter){
   promise
   .then( res => {
     setInfo(res.data)
+  })
+  .catch(error => (
+    console.log('error')
+  ))
+}
+
+export function getCards(setCard){
+
+  const URL = `${URI}/get-card`
+  console.log(URL)
+  const promise = axios.get(URL, config)
+  promise
+  .then( res => {
+    setCard(res.data)
   })
   .catch(error => (
     console.log('error')

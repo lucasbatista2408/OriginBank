@@ -4,15 +4,24 @@ import styled from "styled-components";
 import Logo from "../../../images/logo-no-background.png"
 import { black, purpleC, white } from "../../../Utils/colors";
 import { Gudea } from "../../../Utils/fonts";
+import TextField from '@mui/material/TextField';
+import { useNavigate } from "react-router-dom";
+import LastDeposit from "../LastDeposit";
 
 export default function DepositComponent(){
 
+  const navigate = useNavigate();
+
   const [deposit, setDeposit] = useState({
-    descrition: '',
+    description: '',
+    type: 'deposit',
     amount: '',
   })
 
+  console.log(deposit)
+
   function postDeposit(e){
+    e.preventDefault();
     const URI = process.env.REACT_APP_DATABASE_URI;
     const token = localStorage.getItem("token")
     let config = {
@@ -21,18 +30,22 @@ export default function DepositComponent(){
       }
     }
 
-    e.preventDefault();
-    e.currentTarget.disabled=true;
 
-    if(!deposit.descrition || !deposit.amount){
-      return alert('Fill all the necessary fields'), 
-      e.currentTarget.disabled=false
+    if(!deposit.description || !deposit.amount){
+      return alert('Fill all the necessary fields')
     }
 
-    const URL = `${URI}/signin`
+    const URL = `${URI}/new-tr`
     console.log(URL)
     const data = deposit;
-    const promise = axios.post(URL, config, data)
+    const promise = axios.post(URL, data, config)
+    promise
+    .then(res =>{
+      navigate('/dashboard')
+    })
+    .catch(er => {
+      console.log(er.response.data)
+    })
   }
 
   return(
@@ -40,12 +53,13 @@ export default function DepositComponent(){
       <Header>
         <img src={Logo} alt="logo.png" />
       </Header>
+      <LastDeposit/>
       <Form>
         <p>Description</p>
-        <input type={"text"} value={deposit.descrition} onChange={e => setDeposit({...deposit, descrition: e.target.value})} required/>
+        <input type={"text"} value={deposit.description} onChange={e => setDeposit({...deposit, description: e.target.value})} required/>
         <p>Amount</p>
         <input type={"number"} value={deposit.amount} onChange={e => setDeposit({...deposit, amount: e.target.value})} required/>
-        <button>Make Deposit</button>
+        <button onClick={postDeposit}>Make Deposit</button>
       </Form>
     </DepositContainer>
   )
@@ -65,6 +79,7 @@ const Header = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  border: none;
 
   img{
     width: 12rem;
