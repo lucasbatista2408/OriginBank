@@ -1,15 +1,18 @@
-import React from "react";
-import { useNavigate } from "react-router-dom"
+import * as React from "react";
+import { useNavigate } from "react-router-dom";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
+import Divider from "@mui/material/Divider";
+import CompareArrowsOutlinedIcon from "@mui/icons-material/CompareArrowsOutlined";
+import CreditCardOutlinedIcon from "@mui/icons-material/CreditCardOutlined";
+import CallReceivedIcon from '@mui/icons-material/CallReceived';
+import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
+import { black, purpleC, white } from "../../Utils/colors";
 import styled from "styled-components";
 import { Gudea } from "../../Utils/fonts";
-import { BiTransferAlt } from "react-icons/bi";
-import { BiArrowFromBottom } from "react-icons/bi";
-import { purpleC, white } from "../../Utils/colors";
-import { BiCreditCard } from "react-icons/bi";
-import { BiArrowToBottom } from "react-icons/bi";
 
-
-export default function Menu(){
+export default function Menu() {
 
   const navigate = useNavigate();
 
@@ -29,105 +32,66 @@ export default function Menu(){
     navigate('/transfer')
   }
 
-  return(
-    <>
-    <MenuContainer>
-      <Transactions onClick={navigateTransactions}>
-        <TransactionIcon/>
-        <p>Transactions</p>
-      </Transactions>
-      <Request onClick={navigateCards}>
-        <CardIcon/>
-        <p>Cards</p>
-      </Request>
-      <Deposit onClick={navigateDeposit}>
-        <DepositIcon/>
-        <p>Deposit Money</p>
-      </Deposit>
-      <Transfer onClick={navigateTransfer}>
-        <TransferIcon/>
-        <p>Transfer Money</p>
-      </Transfer>
+  return (
+    <MenuContainer >
+      <Item button onClick={navigateTransactions}>
+        <TransactionIcon />
+        <Text>
+          <h1>Transactions</h1>
+        </Text>
+      </Item>
+      <Item button onClick={navigateCards}>
+        <CardIcon />
+        <Text>
+          <h1>Cards</h1>
+        </Text>
+      </Item>
+      <Item button onClick={navigateDeposit}>
+        <DepositIcon />
+        <Text>
+          <h1>Deposit</h1>
+        </Text>
+      </Item>
+      <Item button onClick={navigateTransfer}>
+        <TransferIcon />
+        <Text>
+          <h1>Transfer</h1>
+        </Text>
+      </Item>
     </MenuContainer>
-    </>
-  )
+  );
 }
 
-const MenuContainer = styled.div`
+const MenuContainer = styled(List)`
+  background-color: ${black};
   height: 41%;
+`
 
+const Item = styled(ListItem)`
+  height: 25%;
   font-family: ${Gudea};
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  color: ${purpleC};
-  font-weight: 700;
-  font-size: 1.6rem;
-
-  p{
-    display: flex;
-    align-items: center;
-
-  }
 `
 
-const TransactionIcon = styled(BiTransferAlt)`
-  margin-top: 1.8rem;
-  margin-right: 0.6rem;
-  font-size: 2rem;
+const TransactionIcon = styled(CompareArrowsOutlinedIcon)`
+  margin-right: 1rem;
   color: ${white};
 `
-const TransferIcon = styled(BiArrowFromBottom)`
-  margin-top: 1.8rem;
-  margin-right: 0.6rem;
-  font-size: 2rem;
+const CardIcon = styled(CreditCardOutlinedIcon)`
+  margin-right: 1rem;
   color: ${white};
 `
-const CardIcon = styled(BiCreditCard)`
-  margin-top: 1.8rem;
-  margin-right: 0.7rem;
-  font-size: 2rem;
+const DepositIcon = styled(CallReceivedIcon)`
+  margin-right: 1rem;
   color: ${white};
 `
-const DepositIcon = styled(BiArrowToBottom)`
-  margin-top: 1.8rem;
-  margin-right: 0.7rem;
-  font-size: 2rem;
+const TransferIcon = styled(ArrowOutwardIcon)`
+  margin-right: 1rem;
   color: ${white};
 `
 
-const Transactions = styled.div`
-  padding-left: 1rem;
-  display: flex;
-  flex-direction: row;
-  height: 25%;
-`
-
-const Request = styled.div`
-  padding-left: 1rem;
-  display: flex;
-  flex-direction: row;
-  height: 25%;
-
-  p{
-    color: ${white};
-  }
-`
-
-const Deposit = styled.div`
-  padding-left: 1rem;
-  display: flex;
-  flex-direction: row;
-  height: 25%;
-`
-
-const Transfer = styled.div`
-  padding-left: 1rem;
-  display: flex;
-  flex-direction: row;
-  height: 25%;
-
-  p{
+const Text = styled(ListItemText)`
+  h1{
+    font-size: 1.6rem;
     color: ${white};
   }
 `

@@ -10,7 +10,6 @@ import TransactionGraph from "./TransactionGraph";
 import LastTransaction from "./LastTransaction";
 import { GetBalance } from "./Functions";
 import Menu from "./Menu";
-import MenuTest from "./MenuTest";
 
 
 export default function DashBoardMobile(){
@@ -54,7 +53,7 @@ export default function DashBoardMobile(){
       </InfoBalance>
       <TransactionGraph/>
       <LastTransaction/>
-      <MenuTest/>
+      <Menu/>
     </DashBoard>
   )
 }

@@ -20,18 +20,19 @@ export default function SignUpMobile(){
     confirm: ''
   })
 
+  console.log(form)
+
 function SignUp(e){
   e.preventDefault();
   const button = document.getElementById("enroll")
   button.disabled=true;
 
   if(!form.first_name || !form.last_name || !form.email || !form.cpf || !form.dob || !form.password || !form.confirm){
-    e.currentTarget.disabled=false;
+    button.disabled=false;
     return alert('Fill all the necessary fields')
   }
 
   if(form.password !== form.confirm){
-    e.currentTarget.disabled=false;
     return alert('password does not match')
   }
 
@@ -65,14 +66,14 @@ function handleClick(){
         <img src={Logo} alt="logo.png" />
       </Head>
       <FormData>
-        <input type={"text"} placeholder={"First Name"} value={form.firstName} onChange={e => setForm({...form, firstName: e.target.value})} required></input>
-        <input type={"text"} placeholder={"Last Name"} value={form.secondName} onChange={e => setForm({...form, secondName: e.target.value})} required></input>
+        <input type={"text"} placeholder={"First Name"} value={form.first_name} onChange={e => setForm({...form, first_name: e.target.value})} required></input>
+        <input type={"text"} placeholder={"Last Name"} value={form.last_name} onChange={e => setForm({...form, last_name: e.target.value})} required></input>
         <input type={"email"} placeholder={"email"} value={form.email} onChange={e => setForm({...form, email: e.target.value})} required></input>
-        <input type={"text"} placeholder={"Social Security Number (CPF)"} value={form.securityNumber} onChange={e => setForm({...form, securityNumber: e.target.value})} required></input>
+        <input type={"text"} placeholder={"Social Security Number (CPF)"} value={form.cpf} onChange={e => setForm({...form, cpf: e.target.value})} required></input>
         <input type={"date"} placeholder={"Date of Birth"} value={form.dob} onChange={e => setForm({...form, dob: e.target.value})} required></input>
         <input type={"password"} placeholder={"Password"} value={form.password} onChange={e => setForm({...form, password: e.target.value})} required></input>
         <input type={"password"} placeholder={"Confirm Password"} value={form.confirm} onChange={e => setForm({...form, confirm: e.target.value})} required></input>
-        <button onClick={SignUp}> Enroll </button>
+        <button id="enroll" onClick={SignUp}> Enroll </button>
         <p onClick={handleClick}>Go Back</p>
       </FormData>
     </SignUpPage>
