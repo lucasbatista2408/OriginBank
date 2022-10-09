@@ -4,6 +4,7 @@ import { black, purpleC, white } from "../../../Utils/colors";
 import Logo from "../../../images/logo-no-background.png"
 import { Gudea } from "../../../Utils/fonts";
 import { AiFillPlusSquare } from "react-icons/ai";
+import CardLayout from "./CardLayout";
 
 export default function CardsComponent(){
 
@@ -18,6 +19,7 @@ export default function CardsComponent(){
       </NewCard>
       <CardList>
         <p>YOUR CARDS</p>
+        <CardLayout/>
       </CardList>
     </CardsContainer>
   )
@@ -55,7 +57,7 @@ const NewCard = styled.div`
   font-size: 1.5rem;
   flex-direction: row;
   justify-content: space-between;
-  margin-top: 2rem;
+  margin-top: -1px;
   color: ${white}
 `
 
