@@ -1,5 +1,6 @@
 import axios from "axios";
 import { React, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const URI = process.env.REACT_APP_DATABASE_URI;
 const token = localStorage.getItem("token")
@@ -11,7 +12,7 @@ let config = {
 }
 
 export async function GetBalance(setBalance){
-  const URL = `${URI}/all-tr`
+  const URL = `${URI}/balance`
   const {data} = await axios.get(URL, config)
   let saldo = 0
 
@@ -68,7 +69,7 @@ export function getLastTransfer(setData){
   ))
 }
 
-export function getAllTransaction(setInfo, limiter){
+export function getAllTransaction(setInfo){
 
   const URL = `${URI}/all-tr`
   const promise = axios.get(URL, config)
@@ -93,4 +94,82 @@ export function getCards(setCard){
   .catch(error => (
     console.log('error')
   ))
+}
+
+export function handleDelete(id){
+  const URL = `${URI}/delete-card`
+
+  const data = {headers: {
+    'Authorization': `Bearer ${token}` 
+  }, data: {id}}
+  
+  const promise = axios.delete(URL, data)
+  console.log(promise)
+  promise
+  .then( res => {
+    window.location.reload()
+  })
+  .catch(error => (
+    console.log(error)
+  ))
+}
+
+export function handleBlock(id){
+  const URL = `${URI}/card/block`
+
+  const data = {id}
+  
+  const promise = axios.put(URL, data, config)
+  console.log(promise)
+  promise
+  .then( res => {
+    window.location.reload()
+  })
+  .catch(error => (
+    console.log(error)
+  ))
+}
+
+export function handleUnblock(id){
+  const URL = `${URI}/card/unblock`
+
+  const data = {id}
+  
+  const promise = axios.put(URL, data, config)
+  console.log(promise)
+  promise
+  .then( res => {
+    window.location.reload()
+  })
+  .catch(error => (
+    console.log(error)
+  ))
+}
+
+export function postDeposit(deposit, setDeposit, navigate){
+
+  const URI = process.env.REACT_APP_DATABASE_URI;
+  const token = localStorage.getItem("token")
+  let config = {
+    headers: {
+      'Authorization': `Bearer ${token}` 
+    }
+  }
+
+
+  if(!deposit.description || !deposit.amount){
+    return alert('Fill all the necessary fields')
+  }
+
+  const URL = `${URI}/new-tr`
+  console.log(URL)
+  const data = deposit;
+  const promise = axios.post(URL, data, config)
+  promise
+  .then(res =>{
+    navigate('/dashboard')
+  })
+  .catch(er => {
+    console.log(er.response.data)
+  })
 }

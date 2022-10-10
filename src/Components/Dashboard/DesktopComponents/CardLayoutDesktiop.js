@@ -9,7 +9,7 @@ import Box from '@mui/material/Box';
 import { black, purpleC, white } from '../../../Utils/colors';
 import { Gudea } from '../../../Utils/fonts';
 
-export default function CardLayout(){
+export default function CardLayoutDesktop(){
 
     const [card,setCard] = useState([])
 
@@ -58,7 +58,8 @@ export default function CardLayout(){
             fontWeight:"700",
             fontFamily:`${Gudea}`,
             "&:active":{bgcolor:`${purpleC}`, color: "white"},
-            "&:focus":{bgcolor:`${purpleC}`, color: "white"}
+            "&:focus":{bgcolor:`${purpleC}`, color: "white"},
+            "&:hover":{bgcolor:`${purpleC}`, color: "white"}
             }} variant="contained" onClick={e => handleDelete(value.id)}> Delete </Button>
             <Button sx={{
               color: `${purpleC}`,
@@ -66,7 +67,8 @@ export default function CardLayout(){
               fontWeight:"700",
               fontFamily:`${Gudea}`,
               "&:active":{bgcolor:`${purpleC}`, color: "white"},
-              "&:focus":{bgcolor:`${purpleC}`, color: "white"}
+              "&:focus":{bgcolor:`${purpleC}`, color: "white"},
+              "&:hover":{bgcolor:`${purpleC}`, color: "white"}
             }} onClick={e => handleBlock(value.id)}> Block </Button>
             <Button sx={{
               color: `${purpleC}`,
@@ -74,7 +76,8 @@ export default function CardLayout(){
               fontWeight:"700",
               fontFamily:`${Gudea}`,
               "&:active":{bgcolor:`${purpleC}`, color: "white"},
-              "&:focus":{bgcolor:`${purpleC}`, color: "white"}
+              "&:focus":{bgcolor:`${purpleC}`, color: "white"},
+              "&:hover":{bgcolor:`${purpleC}`, color: "white"}
             }} onClick={e => handleUnblock(value.id)}> Unblock </Button>
           </Options>
           </CardUnit>
@@ -84,7 +87,7 @@ export default function CardLayout(){
 }
 
 const CardContainer = styled.div`
-  margin-top: 2rem;
+  margin-top: 1rem;
 `
 
 const CardUnit = styled.div`
@@ -99,12 +102,12 @@ const Buttons = styled.div`
   justify-content: space-around;
   margin-top: 1rem;
   padding-bottom: 0.4rem;
-  border-bottom: 1px solid white;
+
 `
 
 const Options = styled(ButtonGroup)`
   margin-top:0.4rem;
-  margin-left: 3.3rem;
+  margin-left: 4.6rem;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -114,6 +117,7 @@ const Options = styled(ButtonGroup)`
 const CardInfo = styled.div`
   font-weight: 700;
   font-family: ${Gudea};
+  color: ${purpleC};
   width: 90%;
   height: 2rem;
   margin-left: 1.2rem;

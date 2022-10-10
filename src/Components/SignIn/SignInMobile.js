@@ -65,7 +65,7 @@ export default function SignInMobile(){
     .catch(error => (
       console.log(error.response.data[0]),
       alert(HandleError(error.response)),
-      e.currentTarget.disabled=false
+      window.location.reload()
     ))
   }
 

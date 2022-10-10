@@ -5,8 +5,40 @@ import Logo from "../../../images/logo-no-background.png"
 import { Gudea } from "../../../Utils/fonts";
 import { AiFillPlusSquare } from "react-icons/ai";
 import CardLayout from "./CardLayout";
+import { useNavigate } from "react-router-dom";
+import axios from "axios"
 
 export default function CardsComponent(){
+
+  const navigate = useNavigate();
+
+  function requestCard(e){
+  e.preventDefault()
+
+  const URI = process.env.REACT_APP_DATABASE_URI;
+  const token = localStorage.getItem("token")
+
+  const config = {
+    headers: {
+      'authorization': `Bearer ${token}` 
+    }
+  };
+
+  const URL = `${URI}/new-card`
+
+  const data = "request"
+
+  const promise = axios.post(URL, data , config)
+  promise
+  .then( res => {
+    alert("you have requested a new card")
+    navigate('/dashboard')
+  })
+  .catch(error => (
+    console.log(error),
+    console.log('error')
+  ))
+  }
 
   return(
     <CardsContainer>
@@ -15,7 +47,7 @@ export default function CardsComponent(){
       </Header>
       <NewCard>
         <h1>Request a New Card</h1>
-        <AddIcon/>
+        <AddIcon onClick={requestCard}/>
       </NewCard>
       <CardList>
         <p>YOUR CARDS</p>
@@ -67,6 +99,8 @@ const AddIcon = styled(AiFillPlusSquare)`
 `
 
 const CardList = styled.div`
+  height: 70%;
+  overflow: scroll;
   padding: 1rem;
   font-family: ${Gudea};
 `

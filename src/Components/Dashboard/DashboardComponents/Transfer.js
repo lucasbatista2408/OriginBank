@@ -7,6 +7,7 @@ import { Gudea } from "../../../Utils/fonts";
 import TextField from '@mui/material/TextField';
 import { useNavigate } from "react-router-dom";
 import LastTransfer from "../LastTransfer";
+import { postDeposit } from "../Functions";
 
 export default function DepositComponent(){
 
@@ -20,34 +21,6 @@ export default function DepositComponent(){
 
   console.log(deposit)
 
-  function postDeposit(e){
-    e.preventDefault();
-    const URI = process.env.REACT_APP_DATABASE_URI;
-    const token = localStorage.getItem("token")
-    let config = {
-      headers: {
-        'Authorization': `Bearer ${token}` 
-      }
-    }
-
-
-    if(!deposit.description || !deposit.amount){
-      return alert('Fill all the necessary fields')
-    }
-
-    const URL = `${URI}/new-tr`
-    console.log(URL)
-    const data = deposit;
-    const promise = axios.post(URL, data, config)
-    promise
-    .then(res =>{
-      navigate('/dashboard')
-    })
-    .catch(er => {
-      console.log(er.response.data)
-    })
-  }
-
   return(
     <DepositContainer> 
       <Header>
@@ -59,7 +32,7 @@ export default function DepositComponent(){
         <input type={"text"} value={deposit.description} onChange={e => setDeposit({...deposit, description: e.target.value})} required/>
         <p>Amount</p>
         <input type={"number"} value={deposit.amount} onChange={e => setDeposit({...deposit, amount: e.target.value})} required/>
-        <button onClick={postDeposit}>Make Transfer</button>
+        <button onClick={e => postDeposit(deposit,setDeposit, navigate)}>Make Transfer</button>
       </Form>
     </DepositContainer>
   )
