@@ -93,7 +93,6 @@ const CardContainer = styled.div`
 const CardUnit = styled.div`
   margin-top: 1rem;
   margin-bottom: 1rem;
-  border-bottom: 2px solid white;
   padding-bottom: 0.6rem;
 `
 
@@ -106,12 +105,13 @@ const Buttons = styled.div`
 `
 
 const Options = styled(ButtonGroup)`
+  width: 100%;
   margin-top:0.4rem;
-  margin-left: 4.6rem;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  background-color: transparent;
 `
 
 const CardInfo = styled.div`
