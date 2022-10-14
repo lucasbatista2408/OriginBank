@@ -124,6 +124,11 @@ const Form = styled.div`
     padding: 1rem;
   }
 
+  input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+  }
+
   input:focus { 
     outline: none !important;
     border-color: black;
@@ -209,5 +214,12 @@ const ConfirmButton = styled.div`
     font-size: 1rem;
     background-color: ${purpleC};
     cursor: pointer;
+    transition: .5s ease-in-out;
+  }
+
+  button:hover{
+    background-color: ${white};
+    color: ${purpleC};
+    border: 2px solid ${purpleC}
   }
 `
