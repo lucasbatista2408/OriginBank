@@ -5,25 +5,19 @@ import { black, purpleC, white } from "../../../Utils/colors";
 import { Gudea } from "../../../Utils/fonts";
 import { getAllTransaction } from "../Functions";
 import { postDeposit } from "../Functions";
+import DepositDesktop from "./DepositDesktop";
 
 
-export default function SecondColumn(){
+export default function FourthColumn(){
 
   const [info, setInfo] = useState([])
-  const navigate = useNavigate();
-
-  const [deposit, setDeposit] = useState({
-    description: '',
-    type: 'debit',
-    amount: '',
-  })
 
   useEffect(() => {
     getAllTransaction(setInfo);
   }, [])
 
   return(
-    <SecondColumnContainer>
+    <FourthColumnContainer>
       <Receipt>
         <h1>Statement</h1>
         <Info>
@@ -50,23 +44,12 @@ export default function SecondColumn(){
           )}
         </TransactionsList>
       </Receipt>
-      <Transfer>
-        <Form>
-          <Title>Make a Transfer</Title>
-          <p>Description</p>
-          <input type={"text"} value={deposit.description} onChange={e => setDeposit({...deposit, description: e.target.value})} required/>
-          <p>Amount</p>
-          <input type={"number"} value={deposit.amount} onChange={e => setDeposit({...deposit, amount: e.target.value})} required/>
-        </Form>
-        <ConfirmButton>
-            <button onClick={e => postDeposit(deposit, setDeposit, navigate)}>GO!</button>
-        </ConfirmButton>
-      </Transfer>
-    </SecondColumnContainer>
+      <DepositDesktop/>
+    </FourthColumnContainer>
   )
 }
 
-const SecondColumnContainer = styled.div`
+const FourthColumnContainer = styled.div`
   width: 24%;
   height: 100%;
   display: flex;

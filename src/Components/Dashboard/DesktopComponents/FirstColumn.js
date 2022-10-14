@@ -55,7 +55,7 @@ export default function FirstColumn(){
 }
 
 const FirstColumnContainer = styled.div`
-  width: 30%;
+  width: 24%;
   height: 100%;
   display: flex;
   flex-direction: column;

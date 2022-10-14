@@ -33,13 +33,11 @@ export default function SignInDesktop(){
 
   function SignIn(e){
     e.preventDefault();
-    e.currentTarget.disabled=true;
 
     console.log('clicked')
 
     if(!login.cpf || !login.password){
-      return alert('Fill all the necessary fields'), 
-      e.currentTarget.disabled=false
+      return alert('Fill all the necessary fields')
     } 
 
     const URL = `${URI}/signin`
@@ -66,8 +64,7 @@ export default function SignInDesktop(){
     })
     .catch(error => (
       console.log(error.response.data),
-      alert(HandleError(error.response)),
-      e.currentTarget.disabled=false
+      alert(HandleError(error.response))
     ))
   }
 

@@ -9,6 +9,7 @@ import TransactionGraphDesktop from "./TransactionGraphDesktop";
 import FirstColumn from "./DesktopComponents/FirstColumn";
 import SecondColumn from "./DesktopComponents/SecondColumn";
 import ThirdColumn from "./DesktopComponents/ThirdColumn";
+import FourthColumn from "./DesktopComponents/FourthColumn";
 
 export default function DashBoardDesktop(){
 
@@ -17,6 +18,7 @@ export default function DashBoardDesktop(){
       <FirstColumn/>
       <SecondColumn/>
       <ThirdColumn/>
+      <FourthColumn/>
     </DesktopContainer>
   )
 }
@@ -29,11 +31,4 @@ const DesktopContainer = styled.div`
   font-family: ${Gudea};
   display: flex;
   justify-content: space-between;
-`
-
-const FourthColumn = styled.div`
-  width: 24%;
-  height: 100%;
-  background-color: white;
-  border-radius: 16px;
 `

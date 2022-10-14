@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { purpleC, white } from "../../../Utils/colors";
 import CardLayoutDesktop from "./CardLayoutDesktiop";
 import { Gudea } from "../../../Utils/fonts";
+import { WindowSharp } from "@mui/icons-material";
 
 export default function ThirdColumn(){
 
@@ -31,7 +32,7 @@ export default function ThirdColumn(){
     promise
     .then( res => {
       alert("you have requested a new card")
-      navigate('/dashboard')
+      window.location.reload()
     })
     .catch(error => (
       console.log(error),
@@ -56,7 +57,7 @@ export default function ThirdColumn(){
 }
 
 const ThirdColumnContainer = styled.div`
-  width: 30%;
+  width: 24%;
   height: 100%;
 `
 
@@ -65,7 +66,6 @@ const CardContainer = styled.div`
   height: 100%;
   background-color: ${white};
   border-radius: 16px;
-  padding: 1rem;
 
   p{
     font-size: 1.4rem;
@@ -104,4 +104,5 @@ const CardList = styled.div`
 const AddIcon = styled(AiFillPlusSquare)`
   font-size: 2.4rem;
   color: ${purpleC};
+  cursor: pointer;
 `

@@ -8,22 +8,11 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 import Box from '@mui/material/Box';
 import { black, purpleC, white } from '../../../Utils/colors';
 import { Gudea } from '../../../Utils/fonts';
+import MaterialButtons from './MaterialButtons';
 
 export default function CardLayoutDesktop(){
 
     const [card,setCard] = useState([])
-
-    console.log(card[0])
-
-    const styles = {
-      "&.MuiButton-contained":{
-        bgcolor: "white",
-        color: `${purpleC}`,
-        fontWeight:"700",
-        "&:active":{bgcolor:`${purpleC}`, color: "white"},
-        "&:focus":{bgcolor:`${purpleC}`, color: "white"}
-      },
-    }
 
     useEffect(() => {
         getCards(setCard)
@@ -51,35 +40,7 @@ export default function CardLayoutDesktop(){
               <h1 style={{ color: "green" }}>Unblocked</h1> 
               <h1>CVV:{value.security_code}</h1>
           </CardInfo>}
-          <Options variant="contained" aria-label="outlined button group">
-            <Button sx={{
-            color: `${purpleC}`,
-            bgcolor: "white",
-            fontWeight:"700",
-            fontFamily:`${Gudea}`,
-            "&:active":{bgcolor:`${purpleC}`, color: "white"},
-            "&:focus":{bgcolor:`${purpleC}`, color: "white"},
-            "&:hover":{bgcolor:`${purpleC}`, color: "white"}
-            }} variant="contained" onClick={e => handleDelete(value.id)}> Delete </Button>
-            <Button sx={{
-              color: `${purpleC}`,
-              bgcolor: "white",
-              fontWeight:"700",
-              fontFamily:`${Gudea}`,
-              "&:active":{bgcolor:`${purpleC}`, color: "white"},
-              "&:focus":{bgcolor:`${purpleC}`, color: "white"},
-              "&:hover":{bgcolor:`${purpleC}`, color: "white"}
-            }} onClick={e => handleBlock(value.id)}> Block </Button>
-            <Button sx={{
-              color: `${purpleC}`,
-              bgcolor: "white",
-              fontWeight:"700",
-              fontFamily:`${Gudea}`,
-              "&:active":{bgcolor:`${purpleC}`, color: "white"},
-              "&:focus":{bgcolor:`${purpleC}`, color: "white"},
-              "&:hover":{bgcolor:`${purpleC}`, color: "white"}
-            }} onClick={e => handleUnblock(value.id)}> Unblock </Button>
-          </Options>
+          <MaterialButtons valueId={value.id}/>
           </CardUnit>
           )}
         </CardContainer>
@@ -87,6 +48,7 @@ export default function CardLayoutDesktop(){
 }
 
 const CardContainer = styled.div`
+  width: 100%;
   margin-top: 1rem;
 `
 
