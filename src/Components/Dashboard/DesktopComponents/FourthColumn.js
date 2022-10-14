@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import styled from "styled-components";
+import axios from "axios"
 import { useNavigate } from "react-router-dom";
 import { black, purpleC, white } from "../../../Utils/colors";
 import { Gudea } from "../../../Utils/fonts";
@@ -11,39 +12,108 @@ import DepositDesktop from "./DepositDesktop";
 export default function FourthColumn(){
 
   const [info, setInfo] = useState([])
+  const [btc, setBTC] = useState("")
+  const [usd, setUSD] = useState("")
+  const [eur, setEUR] = useState("")
+  const [eth, setETH] = useState("")
 
   useEffect(() => {
     getAllTransaction(setInfo);
+    getBTC()
+    getETHC()
+    getUSD()
+    getEUR()
   }, [])
+
+  function getBTC(){
+    const URL = "https://www.mercadobitcoin.net/api/BTC/ticker/"
+
+    const promise = axios.get(URL)
+
+    promise
+    .then(res =>{
+      const data = res.data.ticker.buy
+      const number = new Intl.NumberFormat('pt-BR', {style:'currency', currency:'BRL'}).format(data)
+      setBTC(number)
+    })
+    .catch(er => {
+      console.log(er.response.data)
+    })
+  }
+
+  function getETHC(){
+    const URL = "https://www.mercadobitcoin.net/api/ETH/ticker/"
+
+    const promise = axios.get(URL)
+
+    promise
+    .then(res =>{
+      const data = res.data.ticker.buy
+      const number = new Intl.NumberFormat('pt-BR', {style:'currency', currency:'BRL'}).format(data)
+      setETH(number)
+    })
+    .catch(er => {
+      console.log(er.response.data)
+    })
+  }
+
+  function getUSD(){
+    const URL = "https://economia.awesomeapi.com.br/json/last/USD-BRL"
+
+    const promise = axios.get(URL)
+
+    promise
+    .then(res =>{
+      const data = res.data.USDBRL.high
+      const number = new Intl.NumberFormat('pt-BR', {style:'currency', currency:'BRL'}).format(data)
+      console.log(number)
+      setUSD(number)
+    })
+    .catch(er => {
+      console.log(er.response.data)
+    })
+  }
+
+  function getEUR(){
+    const URL = "https://economia.awesomeapi.com.br/json/last/EUR-BRL"
+
+    const promise = axios.get(URL)
+
+    promise
+    .then(res =>{
+      const data = res.data.EURBRL.high
+      const number = new Intl.NumberFormat('pt-BR', {style:'currency', currency:'BRL'}).format(data)
+      console.log(number)
+      setEUR(number)
+    })
+    .catch(er => {
+      console.log(er.response.data)
+    })
+  }
+
 
   return(
     <FourthColumnContainer>
-      <Receipt>
-        <h1>Statement</h1>
-        <Info>
-          <h1>Description</h1>
-          <h1>Amount</h1>
-        </Info>
-        <TransactionsList>
-          {Array.from(info).map(value => 
-              <ul>
-                <Description>
-                  <h1>{value.description}</h1>
-                  <p>{value.date}</p>
-                </Description>
-                { value.type === 'debit' ? 
-                    <Amount>
-                    R$ - {value.amount}
-                    </Amount> 
-                    :
-                    <Amount>
-                    R$ + {value.amount}
-                    </Amount>
-                }
-              </ul>
-          )}
-        </TransactionsList>
-      </Receipt>
+      <FinancialMarket>
+        <h1>Financial Market</h1>
+        <h2>Quotes</h2>
+        <CryptoQuote>
+          <p>Bitcoin Price</p>
+          <p>{btc}</p>
+        </CryptoQuote>
+        <CryptoQuote>
+          <p>Ethereum Price</p>
+          <p>{eth}</p>
+        </CryptoQuote>
+        <CurrencyQuote>
+          <p>USD to BRL</p>
+          <p>{usd}</p>
+        </CurrencyQuote>
+        <CurrencyQuote>
+          <p>EUR to BRL</p>
+          <p>{eur}</p>
+        </CurrencyQuote>
+      </FinancialMarket>
       <DepositDesktop/>
     </FourthColumnContainer>
   )
@@ -57,7 +127,7 @@ const FourthColumnContainer = styled.div`
   justify-content: space-between;
 `
 
-const Receipt = styled.div`
+const FinancialMarket = styled.div`
   height: 60%;
   background-color: ${white};
   border-radius: 1.4rem;
@@ -70,6 +140,32 @@ const Receipt = styled.div`
     font-weight: 700;
     color: ${purpleC}
   }
+  h2{
+    font-size:1.2rem;
+    font-weight: 700;
+    color: ${purpleC};
+    margin-top: 0.6rem;
+  }
+`
+
+const CryptoQuote = styled.div`
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  font-family: ${Gudea};
+  font-size: 1rem;
+  color: ${purpleC};
+  font-weight: 700;
+`
+
+const CurrencyQuote = styled.div`
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  font-family: ${Gudea};
+  font-size: 1rem;
+  color: ${purpleC};
+  font-weight: 700;
 `
 
 const Transfer = styled.div`
