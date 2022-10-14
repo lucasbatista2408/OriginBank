@@ -167,7 +167,7 @@ export function postDeposit(deposit, setDeposit, navigate){
   const promise = axios.post(URL, data, config)
   promise
   .then(res =>{
-    navigate('/dashboard')
+    window.location.reload()
   })
   .catch(er => {
     console.log(er.response.data)
